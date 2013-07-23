@@ -1,0 +1,273 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+int main()
+/*
+{  int i=1;
+	printf("enter the message m");
+	scanf("%ld",&m);
+	while(m>0)
+	{
+		b[i++]=m%2;
+		m=m/2;
+	}
+	for(k=1;k<=i;k++)
+	{
+	printf("message in binary is%d",b[k]);
+	}
+	printf("enter k1");
+	while(1)
+	{
+	scanf("%d",a[j]);
+	j++;
+	}
+	z=k+j;
+	int l=1;
+	while(l<=k)
+	c[l++]=b[l++];
+	int t=1;
+	while(l<=j)
+	c[l++]=a[t++];
+	printf("the padded message is");
+	for(t=1;t<=l;t++)
+	{printf("%d",c[t]);
+	}
+	printf("enter r");
+	scanf("%d",&r);
+	s=(pow(2,t))-1;
+	x=(pow(2,r))%s;
+	int h=1;
+	while(x>0)
+	{
+		d[h++]=x%2;
+		x=x/2;
+	}
+	for(v=0;v<=t)
+	*/
+{   int m,pm[10],na[8],a,k1,j=1,q=0;
+	printf("Enter the  message: ");
+	scanf("%d",&m);
+	int i=1;
+	while(m!=0)
+	{
+		pm[i++]=m%2;
+		m=m/2;
+	}
+	printf("The message to be sent in binary is: ");
+	for(a=i-1;a>0;a--)
+	{
+		na[q]=pm[a];
+		q++;
+	
+	printf("%d",pm[a]);
+	}
+	printf("\nEnter k1 where k1 is the no of padding bits:");
+	scanf("%d",&k1);
+		
+	printf("\nThe padded message is ");
+	for(i=0;i<q+k1;i++)
+	{	if(i>q-1)
+		{
+		   na[i]=0;
+		}
+		printf("%d",na[i]);
+	}
+	int r,kr[10],kh[10],kn[10],e=0;
+	printf("\nEnter the value of r");
+	scanf("%d",&r);
+	int c;
+	c=r;
+	i=1;
+	while(r!=0)
+	{
+		kr[i++]=r%2;
+		r=r/2;
+	}int b;
+	b=i-1;
+//	printf("%d",b);
+	for(a=i-1;a>0;a--)
+	{
+		kn[e]=kr[a];
+	    e++;
+	}
+		printf("\nThe binary value of r is: ");
+	    for(i=0;i<e;i++)
+		{
+			printf("%d",kn[i]);
+		}
+			printf("\n");
+	int hf[10],s,t1,t,g1,g,k,ha[10],l,f=0,x[10],y[10],hb[10],u,n,hc,hd,he,h,kx[10],ky[10];
+	s=q+k1;
+	t1=pow(2,s);
+	//printf("%d\n",t1);
+	t=t1-1;
+	g1=pow(2,c);
+	g=g1%t;
+	//printf("%d\n",g);
+	while(g!=0)
+	{
+		ha[j++]=g%2;
+		g=g/2;
+	}
+	for(i=0;i<j-1;i++)
+	{
+	hf[i]=ha[j-1-i];
+	}
+	/*	printf("The message to be sent is: ");
+	for(a=j-1;a>0;a--)
+	{
+		hb[f]=ha[a];
+		f++;
+	printf("%d",ha[a]);
+	}*/
+	
+	l=s-j+1;
+	j=0;
+	for(f=0;f<s;f++)
+	{
+	    if(f>=l)
+		hb[f]=hf[j++];
+		else
+		hb[f]=0;
+	}
+	printf("\nThe message after Hashing of G(r) is");
+	for(j=0;j<s;j++)
+	{
+	   printf("%d",hb[j]);
+	}
+	
+	for(f=0;f<s;f++)
+	{
+		if(na[f]==hb[f])
+		x[f]=0;
+		else
+		x[f]=1;
+	}
+	int aj=0,ai[10];
+	printf("\nThe x part  of the message is");
+	for(f=0;f<s;f++)
+	{
+		printf("%d",x[f]);
+	}
+	
+	for(j=0;j<s;j++)
+	{
+		ai[j]=pow(2,j);
+		aj=aj+(ai[j]*x[s-j-1]);
+		
+	}printf("\n");
+	printf("Decimal of X part of the message is");
+	
+		printf("%d",aj);
+	
+	//n=s+b;
+	hc=(52*aj)+3;
+	hd=pow(2,b);
+	he=hd-1;
+	h=hc%he;
+	printf("\nThe value of H(x)is %d",h);
+	u=1;
+	//int kh[10];
+	// now calculating binary of h
+	while(h!=0)
+	{
+		kh[u++]=h%2;
+		h=h/2;
+	}
+	j=0;
+	for(a=u-1;a>0;a--)
+	{
+		kx[j++]=kh[a];
+	}
+	int aa;
+	aa=b-j;
+	j=0;
+	for(a=0;a<b;a++)
+	{
+		if(a>=aa)
+		ky[a]=kx[j++];
+		else
+		ky[a]=0;
+	}
+	printf("\nThe binary of H(x) is");
+	for(a=0;a<b;a++)
+	{
+		printf("%d",ky[a]);
+	}
+	int fa;
+	for(fa=0;fa<b;fa++)
+	{
+		if(kn[fa]==ky[fa])
+		y[fa]=0;
+		else
+		y[fa]=1;
+	}
+	printf("\n");
+	//printf("the binary for r is:");
+	//for(f=0;f<s;f++)
+	//{
+	//	printf("%d",x[f]);
+	//}
+	printf("\n");
+	printf("The y part of the message is:");
+		for(f=0;f<b;f++)
+	{
+		printf("%d",y[f]);
+	}
+	/*printf("\n");
+	printf("The message to be sent is:");
+	
+i=0;
+	while(i<s)
+	{
+		printf("%d",x[i]);
+	i++;
+		}
+		j=0;i=i+1;
+		while(j<b)
+		{x[i]=y[j];
+		printf("%d",x[i]);
+		i++;
+		j++;
+}*/
+	int xy[15],ff,fff=0;
+	for(f=0;f<s;f++)
+	{
+		xy[f]=x[f];
+	}
+	
+	for (ff=s;ff<s+b;ff++)
+	{
+		xy[ff]=y[fff++];
+	}printf("\n");
+	for (ff=0;ff<s+b;ff++)
+	{
+		printf("%d",xy[ff]);
+	}
+	long int ms=0;
+	int ab[ff];
+	for(ff=0;ff<s+b;ff++)
+	{
+		ab[ff]=pow(2,ff);
+		ms=ms+(ab[ff]*xy[s+b-1-ff]);
+	}
+	printf("\nthe message in the decimal is %ld",ms);
+	
+	long int K,A,B,P,msg,R,T,R1,R2,T1,T2;
+	printf("\nselect a random no K");
+    scanf("%ld",&K);
+    printf("\nEnter (p,a,b) as public key of the reciever");
+    scanf("%ld%ld%ld",&P,&A,&B);
+    printf("\nPublic key is:(%ld,%ld,%ld)",P,A,B);
+    //printf("\nEnter the message 'm' where (0<m<p-1):");
+    //scanf("%ld",&msg);
+    R1=pow(B,K);
+    T1=R1%P;
+    T2=pow(A,K);
+    R=T2%P;
+    R2=T1*ms;
+    T=R2%P;
+    printf("\nthe encrpted message to be sent is(c1,c2) as %ld,%ld ",R,T);
+	getch();
+	return 0;
+}	  
