@@ -1,0 +1,211 @@
+#include<conio.h>
+#include<stdio.h>
+#include<math.h>
+int main()
+{   long int P,A,D,t1,B,R,T,Y,Z,Q,msg,s; 
+int g;  
+   line1: printf("Select a prime no.");
+    scanf("%ld",&P);
+    
+    int num,ik,count=0;
+    
+    for(ik=2;ik<=P/2;ik++){
+        if(P%ik==0){
+         count++;
+            break;
+        }
+    }
+   if(count==0 && P!= 1)
+        printf("%ld is a prime number",P);
+   else{
+   
+      printf("%ld is not a prime number\n",P);
+      
+      goto line1;}
+    printf("\n Select a generator as 'a'=");
+    scanf("%ld",&A);
+    printf("\nenter d which is the private key where (2<=d<=p-1)");
+    scanf("%ld",&D);
+    t1=pow(A,D);
+    B=t1%P;
+    printf("\nthe public key is(p,a,b) is %ld,%ld,%ld: ",P,A,B);
+    printf("Do you want to decrypt the message\n 1.yes\n 2.no");
+    scanf("%d",&g);
+    
+    if(g==1)
+    {
+  	printf("\nEnter the cipher text in the form of (c1,c2)");
+		scanf("%ld%ld",&R,&T);
+		
+		}
+		else exit(0);
+		Y=P-1-D;
+		Z=pow(R,Y);
+	    Q=Z%P;
+		s=Q*T;
+		msg=s%P;
+		printf("\nthe encrypted message is:%ld",msg);
+		
+		long int m;
+		m=msg;
+		int tf,xy[15],a[15],i=1,j;
+	while(m!=0)
+	{
+		a[i++]=m%2;
+		m=m/2;
+	}
+	for(j=0;j<i-1;j++)
+	{
+		xy[j]=a[i-j-1];
+	}
+	printf("\nthe message in binary is");
+	for(j=0;j<i-1;j++)
+	{
+		printf("%d",xy[j]);
+	}
+	int ka,kb,n,x[10],y[10];
+	printf("\nenter k0 and k1(no. of bits)");
+	scanf("%d%d",&ka,&kb);
+	n=i-1-(ka+kb);
+	tf=n+kb;
+	printf("x has %d bits and y has %d bits",n+kb,ka);
+	int tc,z,td,hx,h[10],k=0,l=0;
+	for(j=0;j<i-1;j++)
+	{
+		if(j>=n+kb)
+		y[k++]=xy[j];
+		else
+		x[l++]=xy[j];
+	}
+	int tda,hfx[10],ta[10],tb=0;
+	for(j=0;j<l;j++)
+	{
+		ta[j]=pow(2,j);
+		tb=tb+(ta[j]*x[l-1-j]);	
+	}
+	printf("\nx =%d",tb);
+	tc=pow(2,ka);
+	z=tc-1;
+	tda=52*tb;
+	td=tda+3;
+	hx=td%z;
+	printf("\nhx=%d",hx);
+	int b[10],c=1;
+	while(hx!=0)
+	{
+		b[c++]=hx%2;
+		hx=hx/2;
+	}
+	for(j=0;j<c-1;j++)
+	{
+		hfx[j]=b[c-j-1];
+	}
+	int dx,f=0,e;
+	dx=c-1;
+	e=ka-dx;
+	printf("\nbinary of hx is");
+	for(j=0;j<ka;j++)
+	{
+		if(e!=0&&j<e)		
+		h[j]=0;
+		else
+		h[j]=hfx[f++];
+		//printf("%d",h[j]);
+	}
+	for(j=0;j<ka;j++)
+	{
+		printf("%d",h[j]);
+	}
+	int tr[10];
+	for(j=0;j<ka;j++)
+	{
+		if(y[j]==0)
+			tr[j]=h[j];
+		else
+		{
+			if(h[j]==1)
+			tr[j]=0;
+			else
+			tr[j]=1;
+		}
+		
+	}
+	printf("\nthe binary of r is");
+	for(j=0;j<ka;j++)
+	{
+		printf("%d",tr[j]);
+	}
+	int te[10],r=0;
+	for(j=0;j<ka;j++)
+	{
+		te[j]=pow(2,j);
+		r=r+(te[j]*tr[ka-1-j]);	
+	}
+	int ra,rb,t,tx[10];
+	printf("\nthe value of r is %d",r);
+	ra=pow(2,r);
+	rb=pow(2,tf);
+	t=rb-1;
+	g=ra%t;
+	printf("\nthe value of g is%d",g);
+	int p,o=1,q=0,d[10],da[10],ga[10];
+	while(g!=0)
+	{
+		d[o++]=g%2;
+		g=g/2;
+	}
+	int tv;
+	tv=o-1;
+	for(j=0;j<o-1;j++)
+	{
+		da[j]=d[o-j-1];
+	}
+	printf("\nthe value of g in binary is");
+		p=n+kb-tv;
+
+		for(j=0;j<n+kb;j++)
+	{
+		if(p!=0&&j<p)		
+		ga[j]=0;
+		else
+		ga[j]=da[q++];
+		//printf("%d",ga[j]);
+	}
+	for(j=0;j<tf;j++)
+	{
+		printf("%d",ga[j]);
+	}
+	for(j=0;j<tf;j++)
+	{
+		if(x[j]==0)
+			tx[j]=ga[j];
+		else
+		{
+			if(ga[j]==1)
+			tx[j]=0;
+			else
+			tx[j]=1;//tx is mg + padding
+		}
+	}int tg,ms=0,th[10];
+	tg=tf-kb;
+	printf("\nmessage in binary is");
+	for(j=0;j<tg;j++)
+	{
+		printf("%d",tx[j]);
+	}
+	for(j=0;j<tg;j++)
+	{
+		th[j]=pow(2,j);
+		ms=ms+(th[j]*tx[tg-1-j]);	
+	}
+	printf("\nThe message in Decimal is %d",ms);
+	getch();
+	return 0;
+	
+	}
+		
+		
+		
+    
+    
+    
