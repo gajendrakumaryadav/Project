@@ -2,50 +2,9 @@
 #include<conio.h>
 #include<math.h>
 int main()
-/*
-{  int i=1;
-	printf("enter the message m");
-	scanf("%ld",&m);
-	while(m>0)
-	{
-		b[i++]=m%2;
-		m=m/2;
-	}
-	for(k=1;k<=i;k++)
-	{
-	printf("message in binary is%d",b[k]);
-	}
-	printf("enter k1");
-	while(1)
-	{
-	scanf("%d",a[j]);
-	j++;
-	}
-	z=k+j;
-	int l=1;
-	while(l<=k)
-	c[l++]=b[l++];
-	int t=1;
-	while(l<=j)
-	c[l++]=a[t++];
-	printf("the padded message is");
-	for(t=1;t<=l;t++)
-	{printf("%d",c[t]);
-	}
-	printf("enter r");
-	scanf("%d",&r);
-	s=(pow(2,t))-1;
-	x=(pow(2,r))%s;
-	int h=1;
-	while(x>0)
-	{
-		d[h++]=x%2;
-		x=x/2;
-	}
-	for(v=0;v<=t)
-	*/
+
 {   int m,pm[10],na[8],a,k1,j=1,q=0;
-	printf("Enter the  message: ");
+	printf("Enter the  message: ");                             //message in decimal
 	scanf("%d",&m);
 	int i=1;
 	while(m!=0)
@@ -53,7 +12,7 @@ int main()
 		pm[i++]=m%2;
 		m=m/2;
 	}
-	printf("The message to be sent in binary is: ");
+	printf("The message to be sent in binary is: ");             //binary conversion of message
 	for(a=i-1;a>0;a--)
 	{
 		na[q]=pm[a];
@@ -61,10 +20,10 @@ int main()
 	
 	printf("%d",pm[a]);
 	}
-	printf("\nEnter k1 where k1 is the no of padding bits:");
+	printf("\nEnter k1 where k1 is the no of padding bits:");      //entering padding bits
 	scanf("%d",&k1);
 		
-	printf("\nThe padded message is ");
+	printf("\nThe padded message is ");                             //message after padding
 	for(i=0;i<q+k1;i++)
 	{	if(i>q-1)
 		{
@@ -73,7 +32,7 @@ int main()
 		printf("%d",na[i]);
 	}
 	int r,kr[10],kh[10],kn[10],e=0;
-	printf("\nEnter the value of r");
+	printf("\nEnter the value of r");                                   //input random variable
 	scanf("%d",&r);
 	int c;
 	c=r;
@@ -90,7 +49,7 @@ int main()
 		kn[e]=kr[a];
 	    e++;
 	}
-		printf("\nThe binary value of r is: ");
+		printf("\nThe binary value of r is: ");           //binary conversion of random variable
 	    for(i=0;i<e;i++)
 		{
 			printf("%d",kn[i]);
@@ -98,8 +57,8 @@ int main()
 			printf("\n");
 	int hf[10],s,t1,t,g1,g,k,ha[10],l,f=0,x[10],y[10],hb[10],u,n,hc,hd,he,h,kx[10],ky[10];
 	s=q+k1;
-	t1=pow(2,s);
-	//printf("%d\n",t1);
+	t1=pow(2,s);                                        //using a hash function on random variable
+	//printf("%d\n",t1)
 	t=t1-1;
 	g1=pow(2,c);
 	g=g1%t;
@@ -109,19 +68,12 @@ int main()
 		ha[j++]=g%2;
 		g=g/2;
 	}
-	for(i=0;i<j-1;i++)
+	for(i=0;i<j-1;i++)                                      //Hashing with random variable by hash function
 	{
 	hf[i]=ha[j-1-i];
 	}
-	/*	printf("The message to be sent is: ");
-	for(a=j-1;a>0;a--)
-	{
-		hb[f]=ha[a];
-		f++;
-	printf("%d",ha[a]);
-	}*/
 	
-	l=s-j+1;
+	l=s-j+1;                               
 	j=0;
 	for(f=0;f<s;f++)
 	{
@@ -130,13 +82,13 @@ int main()
 		else
 		hb[f]=0;
 	}
-	printf("\nThe message after Hashing of G(r) is");
+	printf("\nThe message after Hashing of G(r) is");                     
 	for(j=0;j<s;j++)
 	{
 	   printf("%d",hb[j]);
 	}
 	
-	for(f=0;f<s;f++)
+	for(f=0;f<s;f++)                                 //XORing the message and G(r)
 	{
 		if(na[f]==hb[f])
 		x[f]=0;
@@ -144,7 +96,7 @@ int main()
 		x[f]=1;
 	}
 	int aj=0,ai[10];
-	printf("\nThe x part  of the message is");
+	printf("\nThe x part  of the message is");        //X part of the message
 	for(f=0;f<s;f++)
 	{
 		printf("%d",x[f]);
@@ -156,12 +108,12 @@ int main()
 		aj=aj+(ai[j]*x[s-j-1]);
 		
 	}printf("\n");
-	printf("Decimal of X part of the message is");
+	printf("Decimal of X part of the message is");        // decimal conversion from binary to the X part of message
 	
 		printf("%d",aj);
 	
 	//n=s+b;
-	hc=(52*aj)+3;
+	hc=(52*aj)+3;                                          //applying another Hash function to X part
 	hd=pow(2,b);
 	he=hd-1;
 	h=hc%he;
@@ -189,13 +141,13 @@ int main()
 		else
 		ky[a]=0;
 	}
-	printf("\nThe binary of H(x) is");
+	printf("\nThe binary of H(x) is");                 //new generated Hashed message  in binary
 	for(a=0;a<b;a++)
 	{
 		printf("%d",ky[a]);
 	}
 	int fa;
-	for(fa=0;fa<b;fa++)
+	for(fa=0;fa<b;fa++)                              //XORing H(x) with random  variable
 	{
 		if(kn[fa]==ky[fa])
 		y[fa]=0;
@@ -209,27 +161,12 @@ int main()
 	//	printf("%d",x[f]);
 	//}
 	printf("\n");
-	printf("The y part of the message is:");
+	printf("The y part of the message is:");                //Y part after XORing 
 		for(f=0;f<b;f++)
 	{
 		printf("%d",y[f]);
 	}
-	/*printf("\n");
-	printf("The message to be sent is:");
 	
-i=0;
-	while(i<s)
-	{
-		printf("%d",x[i]);
-	i++;
-		}
-		j=0;i=i+1;
-		while(j<b)
-		{x[i]=y[j];
-		printf("%d",x[i]);
-		i++;
-		j++;
-}*/
 	int xy[15],ff,fff=0;
 	for(f=0;f<s;f++)
 	{
@@ -239,8 +176,8 @@ i=0;
 	for (ff=s;ff<s+b;ff++)
 	{
 		xy[ff]=y[fff++];
-	}printf("\n");
-	for (ff=0;ff<s+b;ff++)
+	}printf("\n");  
+	for (ff=0;ff<s+b;ff++)                          //concatenation of X and Y part of the message
 	{
 		printf("%d",xy[ff]);
 	}
@@ -251,19 +188,19 @@ i=0;
 		ab[ff]=pow(2,ff);
 		ms=ms+(ab[ff]*xy[s+b-1-ff]);
 	}
-	printf("\nthe message in the decimal is %ld",ms);
+	printf("\nthe message in the decimal is %ld",ms);           //Concatenated message in decimal
 	
 	long int K,A,B,P,msg,R,T,R1,R2,T1,T2;
 	printf("\nselect a random no K");
     scanf("%ld",&K);
-    printf("\nEnter (p,a,b) as public key of the reciever");
+    printf("\nEnter (p,a,b) as public key of the reciever");        //input the public key
     scanf("%ld%ld%ld",&P,&A,&B);
     printf("\nPublic key is:(%ld,%ld,%ld)",P,A,B);
-    //printf("\nEnter the message 'm' where (0<m<p-1):");
+    //printf("\nEnter the message 'm' where (0<m<p-1):");               //message to be entered
     //scanf("%ld",&msg);
-    R1=pow(B,K);
+    R1=pow(B,K);                                                     //applying Elgamal Algorithm to message
     T1=R1%P;
-    T2=pow(A,K);
+    T2=pow(A,K);                                    
     R=T2%P;
     R2=T1*ms;
     T=R2%P;
