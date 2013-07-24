@@ -9,8 +9,10 @@ int g;
     
     int num,ik,count=0;
     
-    for(ik=2;ik<=P/2;ik++){
-        if(P%ik==0){
+    for(ik=2;ik<=P/2;ik++)    //checking whether a no. is prime or not
+    { 
+        if(P%ik==0)
+        {
          count++;
             break;
         }
@@ -22,11 +24,11 @@ int g;
       printf("%ld is not a prime number\n",P);
       
       goto line1;}
-    printf("\n Select a generator as 'a'=");
+    printf("\n Select a generator as 'a'=");                              //Selecting a generator no.
     scanf("%ld",&A);
-    printf("\nenter d which is the private key where (2<=d<=p-1)");
+    printf("\nenter d which is the private key where (2<=d<=p-1)");       // private key to be used in the algorithm
     scanf("%ld",&D);
-    t1=pow(A,D);
+    t1=pow(A,D);                                                         //generating public key from generator and private key
     B=t1%P;
     printf("\nthe public key is(p,a,b) is %ld,%ld,%ld: ",P,A,B);
     printf("Do you want to decrypt the message\n 1.yes\n 2.no");
@@ -34,22 +36,22 @@ int g;
     
     if(g==1)
     {
-  	printf("\nEnter the cipher text in the form of (c1,c2)");
+  	printf("\nEnter the cipher text in the form of (c1,c2)");          //user input of cipher text to decrypt
 		scanf("%ld%ld",&R,&T);
 		
 		}
-		else exit(0);
-		Y=P-1-D;
+		else exit(0);                        
+		Y=P-1-D;                                                // decyphering the cipher text
 		Z=pow(R,Y);
-	    Q=Z%P;
+	        Q=Z%P;
 		s=Q*T;
 		msg=s%P;
-		printf("\nthe encrypted message is:%ld",msg);
+		printf("\nthe encrypted message is:%ld",msg);           //message in plain text
 		
 		long int m;
 		m=msg;
 		int tf,xy[15],a[15],i=1,j;
-	while(m!=0)
+	while(m!=0)                                                  //message conversion in binary
 	{
 		a[i++]=m%2;
 		m=m/2;
@@ -64,7 +66,7 @@ int g;
 		printf("%d",xy[j]);
 	}
 	int ka,kb,n,x[10],y[10];
-	printf("\nenter k0 and k1(no. of bits)");
+	printf("\nenter k0 and k1(no. of bits)");                        //user input from the algorithm k0 and k1 bits
 	scanf("%d%d",&ka,&kb);
 	n=i-1-(ka+kb);
 	tf=n+kb;
@@ -72,7 +74,7 @@ int g;
 	int tc,z,td,hx,h[10],k=0,l=0;
 	for(j=0;j<i-1;j++)
 	{
-		if(j>=n+kb)
+		if(j>=n+kb)                                             // Xoring the result
 		y[k++]=xy[j];
 		else
 		x[l++]=xy[j];
@@ -85,7 +87,7 @@ int g;
 	}
 	printf("\nx =%d",tb);
 	tc=pow(2,ka);
-	z=tc-1;
+	z=tc-1;                                                      //using Hash function to genrate Y part of the message
 	tda=52*tb;
 	td=tda+3;
 	hx=td%z;
@@ -103,7 +105,7 @@ int g;
 	int dx,f=0,e;
 	dx=c-1;
 	e=ka-dx;
-	printf("\nbinary of hx is");
+	printf("\nbinary of hx is");                              //binary conversion of hX part of message 
 	for(j=0;j<ka;j++)
 	{
 		if(e!=0&&j<e)		
@@ -130,7 +132,7 @@ int g;
 		}
 		
 	}
-	printf("\nthe binary of r is");
+	printf("\nthe binary of r is");                         // binary conversion of r:random variable
 	for(j=0;j<ka;j++)
 	{
 		printf("%d",tr[j]);
@@ -142,7 +144,7 @@ int g;
 		r=r+(te[j]*tr[ka-1-j]);	
 	}
 	int ra,rb,t,tx[10];
-	printf("\nthe value of r is %d",r);
+	printf("\nthe value of r is %d",r);                        //using private key to get generator
 	ra=pow(2,r);
 	rb=pow(2,tf);
 	t=rb-1;
@@ -160,7 +162,7 @@ int g;
 	{
 		da[j]=d[o-j-1];
 	}
-	printf("\nthe value of g in binary is");
+	printf("\nthe value of g in binary is");                     //binary conversion of generator 
 		p=n+kb-tv;
 
 		for(j=0;j<n+kb;j++)
@@ -175,7 +177,7 @@ int g;
 	{
 		printf("%d",ga[j]);
 	}
-	for(j=0;j<tf;j++)
+	for(j=0;j<tf;j++)                                          //removing the padding from the message
 	{
 		if(x[j]==0)
 			tx[j]=ga[j];
@@ -188,7 +190,7 @@ int g;
 		}
 	}int tg,ms=0,th[10];
 	tg=tf-kb;
-	printf("\nmessage in binary is");
+	printf("\nmessage in binary is");                                //binary conversion of message
 	for(j=0;j<tg;j++)
 	{
 		printf("%d",tx[j]);
@@ -198,7 +200,7 @@ int g;
 		th[j]=pow(2,j);
 		ms=ms+(th[j]*tx[tg-1-j]);	
 	}
-	printf("\nThe message in Decimal is %d",ms);
+	printf("\nThe message in Decimal is %d",ms);                     //plain text
 	getch();
 	return 0;
 	
